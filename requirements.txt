@@ -1,0 +1,4 @@
+numpy~=1.24.2
+pytorch==2.0.0.dev20230217
+pytorch-cuda~=11.8
+cuda-toolkit~=11.8

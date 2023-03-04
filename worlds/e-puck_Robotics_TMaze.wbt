@@ -1,0 +1,74 @@
+#VRML_SIM R2023a utf8
+
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2022b/projects/objects/floors/protos/RectangleArena.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2022b/projects/robots/gctronic/e-puck/protos/E-puck.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2022b/projects/robots/gctronic/e-puck/protos/E-puckGroundSensors.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023a/projects/appearances/protos/FormedConcrete.proto"
+
+WorldInfo {
+  info [
+    "Copyright (C) 2006 Laboratory of Intelligent Systems (LIS), EPFL"
+    "Thanks to jean-christophe.zufferey@epfl.ch"
+  ]
+  coordinateSystem "NUE"
+}
+Viewpoint {
+  fieldOfView 1.5707963267948966
+  orientation 0.6994250875800675 -0.6932796480003229 -0.17368902248606027 3.530223009311696
+  position -0.016544759063413572 2.1881319780069513 1.1803045985804153
+  far 100
+  followType "None"
+}
+RectangleArena {
+  rotation 1 0 0 -1.5707996938995747
+  floorSize 2 2
+  floorTileSize 0.9 0.9
+  floorAppearance FormedConcrete {
+  }
+  wallThickness 0.03
+  wallHeight 0.05
+}
+PointLight {
+  attenuation 0 0 1
+  intensity 8
+  location 1.2 0.4 1.2
+  castShadows TRUE
+}
+DEF SUPER Robot {
+  children [
+    Receiver {
+      channel 20
+    }
+    Emitter {
+      channel 19
+    }
+    Display {
+      width 500
+      height 150
+    }
+  ]
+  name "Supervisor"
+  controller "supervisor_ddpg"
+  supervisor TRUE
+}
+DEF EPUCK E-puck {
+  hidden position_0_0 -203.77728680823378
+  hidden position_0_1 820.4519760551539
+  hidden linearVelocity_0 2.8393897590572004e-09 -2.3684757858670006e-16 -6.376468342442351e-09
+  hidden angularVelocity_0 -4.242168735610602e-07 -6.70465221141952e-13 -1.892924262031474e-07
+  hidden rotation_1 0 -1 0 2.715356978487015
+  hidden linearVelocity_1 3.773333936353409e-09 -2.9306654907515197e-14 -8.503055032511526e-09
+  hidden angularVelocity_1 -4.2421710288554324e-07 -6.683444712267225e-13 -1.892929043967211e-07
+  hidden rotation_2 0 0.9999999999999999 0 3.6378861218076217
+  hidden linearVelocity_2 3.798308347404138e-09 -2.8693843673481154e-14 -8.491910713244864e-09
+  hidden angularVelocity_2 -4.2421734340417407e-07 -6.095469040757408e-13 -1.8929263695282435e-07
+  translation -0.6006432500676664 -6.567044445844605e-05 -0.5073942736998652
+  rotation 0.41699782537239155 0.6426977750822686 0.6426915150669082 -2.3514592874707123
+  controller "epuck_controller_ddpg"
+  emitter_channel 20
+  receiver_channel 19
+  groundSensorsSlot [
+    E-puckGroundSensors {
+    }
+  ]
+}
